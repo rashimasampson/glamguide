@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>The Wishing App</title>
+</head>
+<body>
+        <div id="top-nav">
+            <h1>Hello {{request.session.greeting}}! Make a wish!</h1>
+            <a href="/logout">Logout</a>
+            </div>
+            {% for message in messages %}
+            <p>- {{message}} -</p>
+        {% endfor %}
+    <form action="/create/{{wish.poster.id}}" method="POST">
+    {% csrf_token %}
+    <label for="new_wish">I wish for:</label>
+    <input type="text" name="new_wish" id="new_wish" class="form-control">
+    <label for="description">Description</label>
+    <input type="text" name="description" id="description" class="form-control">
+    </form>
+    <a href="/wishes" role="button" class="btn btn-primary">Submit</button>
+    <a href="/wishes" role="button" class="btn btn-danger">Cancel</a>
+</div>
+</body>
+</html>
